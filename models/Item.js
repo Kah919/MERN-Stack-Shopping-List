@@ -9,7 +9,7 @@ const ItemSchema = new Schema({
     },
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now // default does it automatically by giving a default value
     }
 });
 
