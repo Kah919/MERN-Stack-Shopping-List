@@ -21,7 +21,8 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch(err => console.log(err));
 
 // Use routes
-app.use('api/items', items)
+app.use('/api/items', items)
+
 
 const port = process.env.PORT || 5000; // process.env is for Heroku
 
