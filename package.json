@@ -4,8 +4,11 @@
   "description": "Shopping List Built With The Mern Stack",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "nodemon serverr.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client/front-end",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Kah",
   "license": "ISC",
