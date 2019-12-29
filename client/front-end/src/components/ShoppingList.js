@@ -22,18 +22,34 @@ class ShoppingList extends Component {
         }
     }
 
+    mapItems = items => {
+        return items.map(({id, name}) => (
+            <CSSTransition key={id} timeout={500} classNames="fade">
+                <ListGroupItem>
+                    <Button className="remove-btn" color="danger" size="sm" onClick={ () => this.remove(id) }> X </Button>
+                    {name}
+                </ListGroupItem>
+            </CSSTransition>
+        ))
+    }
+
+    remove = id => {
+        this.setState({
+            items: this.state.items.filter( item => {
+                return item.id !== id
+            })
+        })
+    }
+
     render() {
         const { items } = this.state; // destructuring so we don't have to keep typing this.state.items
         return(
             <Container>
                 <Button color="dark" style={{marginBottom: '2rem'}} onClick={this.prompt}> Add Item </Button>
+
                 <ListGroup>
-                    <TransitionGroup className="shopping-list">
-                        {items.map(({id, name}) => (
-                            <CSSTransition key={id} timeout={500} classNames="fade">
-                                <ListGroupItem>{name}</ListGroupItem>
-                            </CSSTransition>
-                        ))}
+                    <TransitionGroup className="shopping-list"> 
+                        { this.mapItems(items) } 
                     </TransitionGroup>
                 </ListGroup>
             </Container>
