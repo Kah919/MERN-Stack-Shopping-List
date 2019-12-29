@@ -13,9 +13,30 @@ class ShoppingList extends Component {
         ]
     }
 
+    prompt = () => {
+        const name = prompt('Enter Item')
+        if(name) {
+            this.setState({
+                items: [...this.state.items, { id: uuid(), name }]
+            })
+        }
+    }
+
     render() {
+        const { items } = this.state; // destructuring so we don't have to keep typing this.state.items
         return(
-            <></>
+            <Container>
+                <Button color="dark" style={{marginBottom: '2rem'}} onClick={this.prompt}> Add Item </Button>
+                <ListGroup>
+                    <TransitionGroup className="shopping-list">
+                        {items.map(({id, name}) => (
+                            <CSSTransition key={id} timeout={500} classNames="fade">
+                                <ListGroupItem>{name}</ListGroupItem>
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
+                </ListGroup>
+            </Container>
         )
     }
 }
