@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import uuid from 'uuid';
 import { connect } from 'react-redux'; // lets us get state from redux into a react component
-import { getItems } from '../actions/itemActions';
+import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 class ShoppingList extends Component {
@@ -13,12 +12,12 @@ class ShoppingList extends Component {
     }
 
     prompt = () => {
-        const name = prompt('Enter Item')
-        if(name) {
-            this.setState({
-                items: [...this.state.items, { id: uuid(), name }]
-            })
-        }
+        // const name = prompt('Enter Item')
+        // if(name) {
+        //     this.setState({
+        //         items: [...this.state.items, { id: uuid(), name }]
+        //     })
+        // }
     }
 
     mapItems = items => {
@@ -33,11 +32,7 @@ class ShoppingList extends Component {
     }
 
     remove = id => {
-        this.setState({
-            items: this.state.items.filter( item => {
-                return item.id !== id
-            })
-        })
+        this.props.deleteItem(id); // this will bring us to the actions to call deleteItem
     }
 
     render() {
@@ -65,5 +60,6 @@ const mapStateToProps = state => ({
     item: state.item
 })
 
-export default connect(mapStateToProps, { getItems })(ShoppingList);
+export default connect(mapStateToProps, { getItems, deleteItem })(ShoppingList);
+// this will allow us to use this.props.getItems and this.props.deleteItem
 
