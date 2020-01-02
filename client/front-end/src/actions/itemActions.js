@@ -13,4 +13,11 @@ export const deleteItem = id => {
     };
 }
 
+export const addItem = item => {
+    return {
+        type: ADD_ITEM,
+        payload: item
+    };
+}
+
 // when we return it goes to the reducer
