@@ -39,8 +39,6 @@ class ShoppingList extends Component {
         const { items } = this.props.item; // destructuring so we don't have to keep typing this.state.items
         return(
             <Container>
-                <Button color="dark" style={{marginBottom: '2rem'}} onClick={this.prompt}> Add Item </Button>
-
                 <ListGroup>
                     <TransitionGroup className="shopping-list"> 
                         { this.mapItems(items) } 
@@ -63,3 +61,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { getItems, deleteItem })(ShoppingList);
 // this will allow us to use this.props.getItems and this.props.deleteItem
 
+// <Button color="dark" style={{marginBottom: '2rem'}} onClick={this.prompt}> Add Item </Button>
