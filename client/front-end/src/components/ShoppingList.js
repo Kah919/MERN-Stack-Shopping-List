@@ -21,10 +21,10 @@ class ShoppingList extends Component {
     }
 
     mapItems = items => {
-        return items.map(({id, name}) => (
-            <CSSTransition key={id} timeout={500} classNames="fade">
+        return items.map(({_id, name}) => (
+            <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
-                    <Button className="remove-btn" color="danger" size="sm" onClick={ () => this.remove(id) }> X </Button>
+                    <Button className="remove-btn" color="danger" size="sm" onClick={ () => this.remove(_id) }> X </Button>
                     {name}
                 </ListGroupItem>
             </CSSTransition>

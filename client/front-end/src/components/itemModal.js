@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux'; // lets us connect to redux 
 import { addItem } from '../actions/itemActions';
-import uuid from 'uuid';
 // container is a component that is hooked to redux
 // inside the Modal we use <FormGroup> instead of divs
 
@@ -27,7 +26,6 @@ class ItemModal extends Component {
     onSubmit = event => {
         event.preventDefault();
         const newItem = {
-            id: uuid(),
             name: this.state.name
         }
         // Add item via addItem action
